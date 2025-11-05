@@ -1,0 +1,6 @@
+{
+  "parent": "fragmentsmod:item/bogen_fragment",
+  "textures": {
+    "layer0": "fragmentsmod:item/bogen_fragment_pulling_0"
+  }
+}

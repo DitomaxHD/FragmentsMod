@@ -1,0 +1,21 @@
+{
+  "item.fragmentsmod.schattenschleier": "Schattenschleier",
+  "item.fragmentsmod.bogen_fragment": "Bow fragment",
+  "item.fragmentsmod.mace_fragment": "Mace fragment",
+  "item.fragmentsmod.fragment_schwert": "Fragment sword",
+  "item.fragmentsmod.brustplatten_fragment": "Chestplate fragment",
+  "item.fragmentsmod.staerke_fragment": "Strenght fragment",
+  "item.fragmentsmod.elytra_fragment": "Elytra fragment",
+  "item.fragmentsmod.pandora_fragment": "Pandoras box",
+  "item.fragmentsmod.fragment_halskette": "Fragment necklace",
+  "item.fragmentsmod.spitzhacken_fragment": "Fragment pickaxe",
+  "item.fragmentsmod.pflanzen_fragment": "Pflanzen fragment",
+  "item.fragmentsmod.hordentreiber_fragment": "Hordentreiber",
+  "item.fragmentsmod.speer_fragment": "Speer fragment",
+
+  "itemgroup.fragmentsmod.fragments_items": "Fragments Items",
+  "tag.item.fragmentsmod.fragments_items" : "Fragments Items",
+
+  "key.fragmentsmod.elytra_fragment_boost": "Elytra boost",
+  "category.fragments.controls" : "Fragments"
+}

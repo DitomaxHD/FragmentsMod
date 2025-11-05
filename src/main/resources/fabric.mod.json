@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "id": "fragmentsmod",
+  "version": "${version}",
+  "name": "FragmentsMod",
+  "description": "This mod adds many new weapons called fragments, its is originally made for the minecraft fragments projekt from twitch streamer axxin",
+  "authors": [
+    "Ditomax"
+  ],
+  "contact": {
+    "Github": "https://github.com/DitomaxHD",
+    "Modrinth": "https://modrinth.com/user/ditomax"
+  },
+  "license": "MIT",
+  "icon": "assets/fragmentsmod/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "fabric-datagen": [
+      "org.ditomax.fragmentsmod.client.FragmentsmodDataGenerator"
+    ],
+    "client": [
+      "org.ditomax.fragmentsmod.client.FragmentsmodClient"
+    ],
+    "main": [
+      "org.ditomax.fragmentsmod.Fragmentsmod"
+    ],
+    "modmenu": [
+      "org.ditomax.fragmentsmod.config.ModMenu"
+    ]
+  },
+  "mixins": [
+    "fragmentsmod.mixins.json",
+    {
+      "config": "fragmentsmod.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}",
+
+    "cloth-config": ">=17.0.144"
+  }
+}

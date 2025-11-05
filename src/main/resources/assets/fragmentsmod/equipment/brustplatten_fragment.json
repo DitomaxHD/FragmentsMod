@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "fragmentsmod:brustplatten_fragment"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "fragmentsmod:brustplatten_fragment"
+      }
+    ]
+  }
+}
