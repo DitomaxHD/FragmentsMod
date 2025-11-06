@@ -1,17 +1,13 @@
 package org.ditomax.fragmentsmod.item.fragmente;
 
 import net.fabricmc.fabric.api.item.v1.EnchantingContext;
-import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 
 public class SchattenschleierItem extends AxeItem {
 
