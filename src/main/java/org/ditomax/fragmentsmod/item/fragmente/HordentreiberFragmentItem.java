@@ -1,6 +1,8 @@
 package org.ditomax.fragmentsmod.item.fragmente;
 
+import net.fabricmc.fabric.api.item.v1.EnchantingContext;
 import net.minecraft.block.BlockState;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.mob.MobEntity;
@@ -8,6 +10,7 @@ import net.minecraft.entity.mob.ZombieEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.item.ToolMaterial;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.ditomax.fragmentsmod.util.config.ModConfig;
@@ -143,5 +146,10 @@ public class HordentreiberFragmentItem extends SwordItem {
         boolean solidBelow = !stateBelow.isAir() && stateBelow.isSolidBlock(world, pos.down());
 
         return positionClear && aboveClear && solidBelow;
+    }
+
+    @Override
+    public boolean canBeEnchantedWith(ItemStack stack, RegistryEntry<Enchantment> enchantment, EnchantingContext context) {
+        return true;
     }
 }

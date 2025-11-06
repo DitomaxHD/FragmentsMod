@@ -1,3 +1,25 @@
 /clear
 /stop
 /kill
+/time set day
+/enchant @a minecraft:sharpness 2
+/enchant @a minecraft:unbreaking 1
+/enchant @a minecraft:sharpness 1
+/enchant @a minecraft:unbreaking
+/enchant @a minecraft:aqua_affinity
+/enchant @a minecraft:sharpness
+/enchant @a minecraft:sharpness 1
+/enchant @a minecraft:breach
+/enchant @a minecraft:density
+/enchant @a minecraft:looting
+/enchant @a minecraft:efficiency
+/enchant @a minecraft:knockback
+/enchant @a minecraft:feather_falling
+/enchant @a minecraft:punch
+/enchant @a minecraft:feather_falling
+/enchant @a minecraft:punch
+/enchant @a minecraft:punch 2
+/enchant @a minecraft:punch 4
+/enchant @a minecraft:sweeping_edge
+/enchant @a minecraft:sweeping_edge 1
+/enchant @a minecraft:sweeping_edge 2

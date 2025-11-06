@@ -24,25 +24,25 @@ import java.util.function.Function;
 public class ModItems {
 
     public static final Item SCHATTENSCHLEIER = registerItem("schattenschleier", settings ->
-            new SchattenschleierItem(ModToolMaterials.FRAGMENTS_TOOL_MATERIAL, 7F, 2F, settings
+            new SchattenschleierItem(ModToolMaterials.FRAGMENTS_TOOL_MATERIAL, 8F, -3F, settings
                     .component(DataComponentTypes.UNBREAKABLE, new UnbreakableComponent(true))
                     .rarity(Rarity.EPIC)
                     .maxCount(1)));
 
     public static final Item FRAGMENT_SCHWERT = registerItem("fragment_schwert", settings ->
-            new FragmentSchwertItem(ModToolMaterials.FRAGMENTS_TOOL_MATERIAL, 7.0F, 3.0F, settings
+            new FragmentSchwertItem(ModToolMaterials.FRAGMENTS_TOOL_MATERIAL, 6F, -1F, settings
                     .component(DataComponentTypes.UNBREAKABLE, new UnbreakableComponent(true))
                     .rarity(Rarity.EPIC)
                     .maxCount(1)));
 
     public static final Item SPITZHACKEN_FRAGMENT = registerItem("spitzhacken_fragment", settings ->
-            new SpitzhackenFragmentItem(ModToolMaterials.PICKAXE_TOOL_MATERIAL, 4, 4.0F, settings
+            new SpitzhackenFragmentItem(ModToolMaterials.PICKAXE_TOOL_MATERIAL, 2, -2.5F, settings
                     .component(DataComponentTypes.UNBREAKABLE, new UnbreakableComponent(true))
                     .rarity(Rarity.EPIC)
                     .maxCount(1)));
 
     public static final Item HORDENTREIBER_FRAGMENT = registerItem("hordentreiber_fragment", settings ->
-            new HordentreiberFragmentItem(ModToolMaterials.FRAGMENTS_TOOL_MATERIAL, 6.5F, 4F, settings
+            new HordentreiberFragmentItem(ModToolMaterials.FRAGMENTS_TOOL_MATERIAL, 4F, -2F, settings
                     .component(DataComponentTypes.UNBREAKABLE, new UnbreakableComponent(true))
                     .rarity(Rarity.EPIC)
                     .maxCount(1)));
@@ -89,7 +89,7 @@ public class ModItems {
                                     true,
                                     true
                             ))
-                    .rarity(Rarity.RARE)
+                    .rarity(Rarity.EPIC)
                     .maxCount(1)));
 
     public static final Item PANDORA_FRAGMENT = registerItem("pandora_fragment", settings ->
@@ -111,7 +111,7 @@ public class ModItems {
                     .maxCount(1)));
 
     public static final Item SPEER_FRAGMENT = registerItem("speer_fragment", settings -> new SpeerFragmentItem(
-            ModToolMaterials.FRAGMENTS_TOOL_MATERIAL, 4, 3F, settings
+            ModToolMaterials.FRAGMENTS_TOOL_MATERIAL, 3, -1.5F, settings
                         .component(DataComponentTypes.UNBREAKABLE, new UnbreakableComponent(true))
                         .rarity(Rarity.EPIC)
                         .maxCount(1)));
