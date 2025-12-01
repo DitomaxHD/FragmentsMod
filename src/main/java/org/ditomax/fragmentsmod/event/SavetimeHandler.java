@@ -1,11 +1,15 @@
 package org.ditomax.fragmentsmod.event;
 
+import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
+import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import org.ditomax.fragmentsmod.util.Discord;
@@ -105,6 +109,20 @@ public class SavetimeHandler {
 
             state.savetimeMap.entrySet().removeIf(entry -> entry.getValue() <= 0);
             state.markDirty();
+        });
+
+        ServerPlayConnectionEvents.DISCONNECT.register((handler, server1) -> {
+            ServerPlayerEntity serverPlayer = handler.getPlayer();
+
+            if (serverPlayer != null) {
+                state.savetimeMap.remove(serverPlayer.getUuid());
+            }
+        });
+
+        ServerPlayerEvents.AFTER_RESPAWN.register((oldPlayer, newPlayer, alive) -> {
+            if (!alive) {
+                state.savetimeMap.remove(newPlayer.getUuid());
+            }
         });
     }
 }

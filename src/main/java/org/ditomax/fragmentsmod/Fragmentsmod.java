@@ -12,7 +12,6 @@ import org.ditomax.fragmentsmod.event.HalskettenFragmentHandler;
 import org.ditomax.fragmentsmod.event.SavetimeHandler;
 import org.ditomax.fragmentsmod.item.ModItemGroup;
 import org.ditomax.fragmentsmod.item.ModItems;
-import org.ditomax.fragmentsmod.util.ModComponents;
 import org.ditomax.fragmentsmod.util.config.ConfigManager;
 import org.ditomax.fragmentsmod.util.config.ModConfig;
 import org.ditomax.fragmentsmod.util.payload.ConfigSyncPayload;
@@ -47,7 +46,6 @@ public class Fragmentsmod implements ModInitializer {
         ModItems.initialize();
         ModItemEntities.register();
         FragmentsDropHandler.register();
-        ModComponents.initialize();
         HalskettenFragmentHandler.register();
 
         ServerLifecycleEvents.SERVER_STARTED.register(SavetimeHandler::initialize);

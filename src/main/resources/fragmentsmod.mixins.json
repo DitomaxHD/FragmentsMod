@@ -13,7 +13,8 @@
     "FragmentBlockPickupMixin",
     "ZombieConfigMixin",
     "FragmentsExplosionMixin",
-    "BlockHopperExtractionMixin"
+    "BlockHopperExtractionMixin",
+    "BundelsMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -11,6 +11,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import org.ditomax.fragmentsmod.event.GlowHandler;
 import org.ditomax.fragmentsmod.util.config.ModConfig;
 
+
 @Environment(EnvType.CLIENT)
 public class FragmentsLimitation {
 
@@ -23,36 +24,37 @@ public class FragmentsLimitation {
                 return;
             }
 
+            if (client.options.hudHidden || player.isSpectator()) {
+                return;
+            }
 
             if (GlowHandler.getFragmentsCount(player) >= ModConfig.getActiveConfig().maxFragmentCount) {
                 drawFragmentsCount(client, drawContext, 0xAA0000, player);
 
-            }else if (GlowHandler.getFragmentsCount(player) == ModConfig.getActiveConfig().maxFragmentCount-1){
+            } else if (GlowHandler.getFragmentsCount(player) == ModConfig.getActiveConfig().maxFragmentCount-1) {
                 drawFragmentsCount(client, drawContext, 0xFFAA00, player);
 
-            }else if (GlowHandler.getFragmentsCount(player) == 0) {
+            } else if (GlowHandler.getFragmentsCount(player) == 0) {
                 drawFragmentsCount(client, drawContext, 0xFFFFFF, player);
 
-            }else  {
+            } else {
                 drawFragmentsCount(client, drawContext, 0x00AA00, player);
             }
         });
     }
 
-    public static void drawFragmentsCount(MinecraftClient client, DrawContext drawContext, int color, PlayerEntity player){
+    public static void drawFragmentsCount(MinecraftClient client, DrawContext drawContext, int color, PlayerEntity player) {
         int screenWidth = client.getWindow().getScaledWidth();
         int screenHeight = client.getWindow().getScaledHeight();
 
         String text = "[" + GlowHandler.getFragmentsCount(player) + "/" + ModConfig.getActiveConfig().maxFragmentCount + "]";
 
-        // Hotbar ist normalerweise 182 Pixel breit und zentriert am unteren Bildschirmrand
-        // Position rechts neben der Hotbar
         int hotbarWidth = 182;
-        int hotbarX = (screenWidth - hotbarWidth) / 2;  // Linke Kante der Hotbar
-        int hotbarRightX = hotbarX + hotbarWidth;        // Rechte Kante der Hotbar
+        int hotbarX = (screenWidth - hotbarWidth) / 2;
+        int hotbarRightX = hotbarX + hotbarWidth;
 
-        int x = hotbarRightX + 5;  // 10 Pixel rechts neben der Hotbar
-        int y = screenHeight - 15;  // Auf gleicher Höhe wie die Hotbar
+        int x = hotbarRightX + 5;
+        int y = screenHeight - 15;
         drawContext.drawText(
                 MinecraftClient.getInstance().textRenderer,
                 text,

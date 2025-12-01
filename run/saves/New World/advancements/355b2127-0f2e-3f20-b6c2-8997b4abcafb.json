@@ -1,13 +1,22 @@
 {
-  "minecraft:recipes/misc/iron_nugget_from_smelting": {
-    "criteria": {
-      "has_iron_sword": "2025-11-06 18:28:53 +0100"
-    },
-    "done": true
-  },
   "minecraft:recipes/decorations/crafting_table": {
     "criteria": {
       "unlock_right_away": "2025-11-06 18:28:01 +0100"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "minecraft:old_growth_birch_forest": "2025-11-18 20:49:49 +0100",
+      "minecraft:beach": "2025-11-06 18:29:17 +0100",
+      "minecraft:forest": "2025-11-18 19:58:54 +0100",
+      "minecraft:birch_forest": "2025-11-06 18:28:02 +0100"
+    },
+    "done": false
+  },
+  "minecraft:recipes/misc/iron_nugget_from_smelting": {
+    "criteria": {
+      "has_iron_sword": "2025-11-06 18:28:53 +0100"
     },
     "done": true
   },
@@ -16,13 +25,6 @@
       "has_iron_sword": "2025-11-06 18:28:53 +0100"
     },
     "done": true
-  },
-  "minecraft:adventure/adventuring_time": {
-    "criteria": {
-      "minecraft:beach": "2025-11-06 18:29:17 +0100",
-      "minecraft:birch_forest": "2025-11-06 18:28:02 +0100"
-    },
-    "done": false
   },
   "DataVersion": 4189
 }

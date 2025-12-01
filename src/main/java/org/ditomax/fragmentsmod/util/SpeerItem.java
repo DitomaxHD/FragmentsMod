@@ -71,7 +71,6 @@ public class SpeerItem extends Item {
             player.getItemCooldownManager().set(stack, 15);
         }
 
-        stack.remove(ModComponents.PREV_POS);
         return true;
     }
 
@@ -81,7 +80,6 @@ public class SpeerItem extends Item {
             player.getItemCooldownManager().set(stack, 15);
         }
 
-        stack.remove(ModComponents.PREV_POS);
         return stack;
     }
 
@@ -103,7 +101,7 @@ public class SpeerItem extends Item {
     @Override
     public ActionResult use(World world, PlayerEntity user, Hand hand) {
         user.setCurrentHand(hand);
-        user.getStackInHand(hand).set(ModComponents.PREV_POS, user.getPos());
+        ItemStack stack = user.getStackInHand(hand);
         return ActionResult.CONSUME;
     }
 
@@ -122,23 +120,24 @@ public class SpeerItem extends Item {
             return;
         }
 
-        Vec3d startPos = stack.get(ModComponents.PREV_POS);
-        if (startPos == null) {
-            stack.set(ModComponents.PREV_POS, user.getPos());
-            return;
-        }
+        // Berechne die aktuelle Geschwindigkeit des Spielers
+        Vec3d currentVelocity = user.getVelocity();
+        double speed = Math.sqrt(currentVelocity.x * currentVelocity.x + currentVelocity.z * currentVelocity.z);
 
-        double distanceMoved = user.getPos().distanceTo(startPos);
+        // Normalisiere die Geschwindigkeit (0.0 bis 1.0)
+        // Annahme: Maximale Sprint-Geschwindigkeit ist ca. 0.3
+        double maxSpeed = 0.3;
+        double speedNorm = Math.min(1.0, speed / maxSpeed);
 
-        if (distanceMoved < 0.05D) return;
-
+        // Verwende einen Exponenten für nicht-lineare Skalierung
         double exponent = 2.0;
-        double speedNorm = Math.min(1.0, (distanceMoved - 0.1) / (5.0 - 0.1));
+        double speedFactor = Math.pow(speedNorm, exponent);
 
+        // Berechne Schaden und Knockback basierend auf Geschwindigkeit
         float damage = (float) (ModConfig.getActiveConfig().minSpeerDamage +
-                (ModConfig.getActiveConfig().maxSpeerDamage - ModConfig.getActiveConfig().minSpeerDamage) * Math.pow(speedNorm, exponent));
+                (ModConfig.getActiveConfig().maxSpeerDamage - ModConfig.getActiveConfig().minSpeerDamage) * speedFactor);
         float knockback = (float) (ModConfig.getActiveConfig().minSpeerKnockback +
-                (ModConfig.getActiveConfig().maxSpeerKnockback - ModConfig.getActiveConfig().minSpeerKnockback) * Math.pow(speedNorm, exponent));
+                (ModConfig.getActiveConfig().maxSpeerKnockback - ModConfig.getActiveConfig().minSpeerKnockback) * speedFactor);
 
         Vec3d lookVec = user.getRotationVec(1.0F);
         Vec3d targetPos = user.getEyePos().add(lookVec);
@@ -167,7 +166,5 @@ public class SpeerItem extends Item {
         if (hitEntity) {
             player.stopUsingItem();
         }
-
-        stack.set(ModComponents.PREV_POS, user.getPos());
     }
 }
