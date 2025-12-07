@@ -30,3 +30,4 @@
 /effect clear
 /effect give @a minecraft:resistance
 /effect give @a minecraft:glowing
+/enchant @a minecraft:efficiency 5

@@ -1,7 +1,7 @@
 version:4189
 ao:true
 biomeBlendRadius:2
-enableVsync:true
+enableVsync:false
 entityDistanceScaling:1.0
 entityShadows:true
 forceUnicodeFont:false
@@ -123,8 +123,8 @@ key_key.hotbar.6:key.keyboard.f
 key_key.hotbar.7:key.keyboard.7
 key_key.hotbar.8:key.keyboard.8
 key_key.hotbar.9:key.keyboard.9
-key_key.fragmentsmod.elytra_fragment_boost:key.keyboard.f
 key_key.modmenu.open_menu:key.keyboard.unknown
+key_key.fragmentsmod.elytra_fragment_boost:key.keyboard.f
 soundCategory_master:1.0
 soundCategory_music:0.0
 soundCategory_record:1.0
