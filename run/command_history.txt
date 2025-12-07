@@ -23,3 +23,10 @@
 /enchant @a minecraft:sweeping_edge
 /enchant @a minecraft:sweeping_edge 1
 /enchant @a minecraft:sweeping_edge 2
+/enchant @a minecraft:punch
+/enchant @a minecraft:efficiency
+/enchant @a minecraft:efficiency 5
+/clear
+/effect clear
+/effect give @a minecraft:resistance
+/effect give @a minecraft:glowing

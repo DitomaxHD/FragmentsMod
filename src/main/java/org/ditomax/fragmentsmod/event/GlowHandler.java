@@ -7,42 +7,62 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
+import org.ditomax.fragmentsmod.effects.ModEffects;
 import org.ditomax.fragmentsmod.item.ModItems;
 import org.ditomax.fragmentsmod.util.ModTags;
 import org.ditomax.fragmentsmod.util.config.ModConfig;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 public class GlowHandler {
 
-    public static void checkForFragments(ServerPlayerEntity player) {
-        boolean hasAnyFragment = checkItemPresence(player, null);
+    private static final Map<UUID, Boolean> GLOWING_PLAYERS = new HashMap<>();
 
+    public static void checkForFragments(ServerPlayerEntity player) {
+        UUID playerId = player.getUuid();
+
+        boolean hasAnyFragment = checkItemPresence(player, null);
         boolean hasStrengthFragment = checkItemPresence(player, ModItems.STAERKE_FRAGMENT);
         boolean hasPandoraFragment = checkItemPresence(player, ModItems.PANDORA_FRAGMENT);
 
+        boolean wasGlowing = GLOWING_PLAYERS.getOrDefault(playerId, false);
+
         if (hasAnyFragment) {
-            player.addStatusEffect(new StatusEffectInstance(
-                    StatusEffects.GLOWING, -1, 0, false, false, false));
+            if (!wasGlowing) {
+                player.addStatusEffect(new StatusEffectInstance(ModEffects.GLOW, -1, 0, false,false,false));
+                GLOWING_PLAYERS.put(playerId, true);
+            }
 
             if (hasStrengthFragment) {
                 player.addStatusEffect(new StatusEffectInstance(
-                        StatusEffects.STRENGTH, -1, 0, false, false, false));
+                        ModEffects.STRENGTH, -1, 0, false, false, false));
+                player.addStatusEffect(new StatusEffectInstance(
+                        ModEffects.STRENGTH, -1, 0, false, false, false));
             } else {
-                player.removeStatusEffect(StatusEffects.STRENGTH);
+                player.removeStatusEffect(ModEffects.STRENGTH);
             }
 
             if (hasPandoraFragment) {
                 player.addStatusEffect(new StatusEffectInstance(
-                        StatusEffects.SATURATION, -1, 0, false, false, false));
+                        ModEffects.RESISTANCE, -1, 0, false, false, false));
+                player.addStatusEffect(new StatusEffectInstance(
+                        ModEffects.RESISTANCE, -1, 0, false, false, false));
             } else {
-                player.removeStatusEffect(StatusEffects.SATURATION);
+                player.removeStatusEffect(ModEffects.RESISTANCE);
             }
 
         } else {
-            player.removeStatusEffect(StatusEffects.GLOWING);
-            player.removeStatusEffect(StatusEffects.STRENGTH);
-            player.removeStatusEffect(StatusEffects.SATURATION);
+            if (wasGlowing) {
+                player.setGlowing(false);
+                GLOWING_PLAYERS.put(playerId, false);
+            }
+
+            player.removeStatusEffect(ModEffects.GLOW);
+            player.removeStatusEffect(ModEffects.STRENGTH);
+            player.removeStatusEffect(ModEffects.RESISTANCE);
         }
     }
 

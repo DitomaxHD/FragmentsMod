@@ -43,7 +43,7 @@ public class BogenFragmentItem extends BowItem {
                 world,
                 player,
                 new ItemStack(Items.SPECTRAL_ARROW),
-                new ItemStack(this)
+                stack
         );
 
         spectralArrowEntity.setVelocity(

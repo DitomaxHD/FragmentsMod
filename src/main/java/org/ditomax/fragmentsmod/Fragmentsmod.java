@@ -5,6 +5,7 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
+import org.ditomax.fragmentsmod.effects.ModEffects;
 import org.ditomax.fragmentsmod.entity.ModItemEntities;
 import org.ditomax.fragmentsmod.event.ElytraFragmentHandler;
 import org.ditomax.fragmentsmod.event.FragmentsDropHandler;
@@ -40,6 +41,7 @@ public class Fragmentsmod implements ModInitializer {
             }
         });
 
+        ModEffects.initialize();
         ElytraFragmentHandler.register();
         ConfigManager.loadConfig();
         ModItemGroup.initialize();

@@ -10,10 +10,10 @@ public class ModKeybindings {
     private static boolean boostKeyWasDown = false;
 
     public static void registerClient() {
-        ClientTickEvents.END_CLIENT_TICK.register( client -> {
+        ClientTickEvents.START_CLIENT_TICK.register( client -> {
             if (client.player == null) return;
 
-            boolean boostKeyIsDown = FragmentsmodClient.boostKey.isPressed();
+            boolean boostKeyIsDown = FragmentsmodClient.boostKey.wasPressed();
 
             if (boostKeyIsDown && !boostKeyWasDown) {
                 if (client.player.isGliding()) {

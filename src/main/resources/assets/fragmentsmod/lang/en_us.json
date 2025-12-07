@@ -17,5 +17,9 @@
   "tag.item.fragmentsmod.fragments_items" : "Fragments Items",
 
   "key.fragmentsmod.elytra_fragment_boost": "Elytra boost",
-  "category.fragments.controls" : "Fragments"
+  "category.fragments.controls" : "Fragments",
+
+  "effect.fragmentsmod.glow": "Glow",
+  "effect.fragmentsmod.strength": "Strenght",
+  "effect.fragmentsmod.resistance": "Resistance"
 }

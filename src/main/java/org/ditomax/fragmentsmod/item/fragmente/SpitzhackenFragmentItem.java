@@ -51,6 +51,7 @@ public class SpitzhackenFragmentItem extends PickaxeItem {
 
                         BlockState targetState = world.getBlockState(targetPos);
 
+                        // Prüfe ob der Block abgebaut werden kann
                         if (!targetState.isAir() && targetState.getHardness(world, targetPos) >= 0) {
                             world.breakBlock(targetPos, true, player);
                         }
@@ -59,7 +60,7 @@ public class SpitzhackenFragmentItem extends PickaxeItem {
             }
         }
 
-        return true;
+        return super.postMine(stack, world, state, pos, miner);
     }
 
     @Override
