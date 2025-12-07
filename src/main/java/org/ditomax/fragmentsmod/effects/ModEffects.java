@@ -38,6 +38,5 @@ public class ModEffects {
         return Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(Fragmentsmod.MOD_ID, name), statusEffect);
     }
 
-    public static void initialize() {};
-
+    public static void initialize() {}
 }
