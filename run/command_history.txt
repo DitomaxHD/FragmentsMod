@@ -31,3 +31,16 @@
 /effect give @a minecraft:resistance
 /effect give @a minecraft:glowing
 /enchant @a minecraft:efficiency 5
+/effect give @a minecraft:night_vision
+/effect give @a minecraft:haste 5 10
+/effect give @a minecraft:haste 30 10
+/effect give @a minecraft:haste 30 40
+/effect give @a minecraft:night_vision infinite
+/clear
+/time set day
+/enchant @a minecraft:efficiency 5
+/enchant @a minecraft:efficiency 2
+/clear
+/kill @e[ type=minecraft:zombie]
+/time set day
+/kill @e[ type=minecraft:zombie]

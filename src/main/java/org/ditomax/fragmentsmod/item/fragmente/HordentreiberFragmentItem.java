@@ -3,8 +3,11 @@ package org.ditomax.fragmentsmod.item.fragmente;
 import net.fabricmc.fabric.api.item.v1.EnchantingContext;
 import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.ZombieEntity;
 import net.minecraft.item.ItemStack;
@@ -65,6 +68,10 @@ public class HordentreiberFragmentItem extends SwordItem {
 
         if (ZOMBIES.contains(target)) return true;
 
+        for (ZombieEntity zom : ZOMBIES) {
+            zom.remove(Entity.RemovalReason.DISCARDED);
+        }
+
         if (random.nextInt(0, 100) < ModConfig.getActiveConfig().hordentreiberSpawnProcentage) {
             int zombieCount = random.nextInt(1, ModConfig.getActiveConfig().hordentreiberMaxZombies);
 
@@ -90,16 +97,23 @@ public class HordentreiberFragmentItem extends SwordItem {
                 getTargetSelector(zombie).clear(removeAllPredicate);
 
                 zombie.setTarget(target);
+                zombie.setStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, -1, 1, false, false, false), zombie);
+                zombie.setStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, -1, 1, false, false, false), zombie);
+                zombie.setStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, -1, 1, false, false, false), zombie);
 
-                getTargetSelector(zombie).add(1, new ActiveTargetGoal<>(zombie, LivingEntity.class, true));
+                getTargetSelector(zombie).add(1, new ActiveTargetGoal<>(zombie, LivingEntity.class, 10, true, false,
+                        (entity, serverWorld) -> entity == target && !ZOMBIES.contains(entity)
+                ));
                 getGoalSelector(zombie).add(2, new MeleeAttackGoal(zombie, 1.0, false));
                 getGoalSelector(zombie).add(3, new WanderNearTargetGoal(zombie, 1.0, 32.0F));
 
+                zombie.setTarget(target);
+
                 zombie.setCustomNameVisible(false);
 
-                target.getWorld().spawnEntity(zombie);
-
                 ZOMBIES.add(zombie);
+
+                target.getWorld().spawnEntity(zombie);
 
                 zombie.setAttacker(null);
             }

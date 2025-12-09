@@ -12,8 +12,8 @@ public class ModToolMaterials{
     public static final ToolMaterial PICKAXE_TOOL_MATERIAL = new ToolMaterial(
             BlockTags.INCORRECT_FOR_NETHERITE_TOOL,
             2000,
-            1.0f,
-            4.0f,
+            1.010f,
+            8.0f,
             22,
             ItemTags.NETHERITE_TOOL_MATERIALS
     );
