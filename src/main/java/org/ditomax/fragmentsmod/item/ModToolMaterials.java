@@ -13,7 +13,7 @@ public class ModToolMaterials{
             BlockTags.INCORRECT_FOR_NETHERITE_TOOL,
             2000,
             1.010f,
-            8.0f,
+            1.0f,
             22,
             ItemTags.NETHERITE_TOOL_MATERIALS
     );

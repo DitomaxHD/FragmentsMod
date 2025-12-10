@@ -41,5 +41,8 @@
     "minecraft": "${minecraft_version}",
 
     "cloth-config": ">=17.0.144"
-  }
+  },
+  "accessWidener": "fragmentsmod.classtweaker"
 }
+
+

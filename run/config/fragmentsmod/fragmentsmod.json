@@ -7,8 +7,8 @@
   "elytraCooldown": 200.0,
   "longElytraCooldown": 1200.0,
   "halsketteArmorDamageBoost": 3.0,
-  "hordentreiberMaxZombies": 100,
-  "hordentreiberSpawnProcentage": 100,
+  "hordentreiberMaxZombies": 7,
+  "hordentreiberSpawnProcentage": 30,
   "schutzzeit": 1200,
   "discordWebhookUrl": "https://discord.com/api/webhooks/1435744818180521994/lXi3p0AaNtng2xiMhE2qrGi_ZUK7JNyXPpkyHTXclVcVjzxmk1-wLQd5ssdvjjWWuePE",
   "maxFragmentCount": 3

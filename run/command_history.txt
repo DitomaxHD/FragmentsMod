@@ -1,5 +1,3 @@
-/clear
-/stop
 /kill
 /time set day
 /enchant @a minecraft:sharpness 2
@@ -47,3 +45,6 @@
 /summon fragmentsmod:undestructable_item
 /kill @e
 /summon fragmentsmod:undestructable_item
+/enchant @a minecraft:efficiency 2
+/enchant @a minecraft:efficiency 5
+/reload

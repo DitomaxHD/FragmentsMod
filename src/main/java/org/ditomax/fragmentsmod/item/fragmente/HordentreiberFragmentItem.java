@@ -18,7 +18,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.ditomax.fragmentsmod.util.config.ModConfig;
 
-import java.lang.reflect.Field;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
@@ -34,45 +33,43 @@ public class HordentreiberFragmentItem extends SwordItem {
         super(material, attackDamage, attackSpeed, settings);
     }
 
-
     @Override
     public boolean hasGlint(ItemStack stack) {
         return true;
     }
 
     private static GoalSelector getGoalSelector(MobEntity mob) {
-        try {
-            Field goalSelectorField = MobEntity.class.getDeclaredField("goalSelector");
-            goalSelectorField.setAccessible(true);
-            return (GoalSelector) goalSelectorField.get(mob);
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to access goalSelector", e);
-        }
+        return mob.goalSelector;
     }
 
     private static GoalSelector getTargetSelector(MobEntity mob) {
-        try {
-            Field targetSelectorField = MobEntity.class.getDeclaredField("targetSelector");
-            targetSelectorField.setAccessible(true);
-            return (GoalSelector) targetSelectorField.get(mob);
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to access targetSelector", e);
-        }
+        return mob.targetSelector;
     }
 
     @Override
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        // Wichtig: Rufe zuerst super.postHit() auf für normale Item-Logik
+        super.postHit(stack, target, attacker);
+
+        // Nur auf Server-Seite ausführen
         if (target.getWorld().isClient) {
             return true;
         }
 
-        if (ZOMBIES.contains(target)) return true;
-
-        for (ZombieEntity zom : ZOMBIES) {
-            zom.remove(Entity.RemovalReason.DISCARDED);
+        // Wenn das Ziel ein gespawnter Zombie ist, nichts weiter tun
+        if (ZOMBIES.contains(target)) {
+            return true;
         }
 
-        if (random.nextInt(0, 100) < ModConfig.getActiveConfig().hordentreiberSpawnProcentage) {
+        // Entferne alte Zombies (nur wenn neue gespawnt werden)
+        if (random.nextInt(100) < ModConfig.getActiveConfig().hordentreiberSpawnProcentage) {
+            // Erstelle eine Kopie, um ConcurrentModificationException zu vermeiden
+            Set<ZombieEntity> zombiesToRemove = new HashSet<>(ZOMBIES);
+            for (ZombieEntity zom : zombiesToRemove) {
+                zom.remove(Entity.RemovalReason.DISCARDED);
+            }
+            ZOMBIES.clear();
+
             int zombieCount = random.nextInt(1, ModConfig.getActiveConfig().hordentreiberMaxZombies);
 
             for (int i = 0; i < zombieCount; i++) {
@@ -92,6 +89,7 @@ public class HordentreiberFragmentItem extends SwordItem {
                 zombie.setPersistent();
                 zombie.setDespawnCounter(1200);
 
+                // Entferne Standard-AI
                 Predicate<Goal> removeAllPredicate = (goal) -> true;
                 getGoalSelector(zombie).clear(removeAllPredicate);
                 getTargetSelector(zombie).clear(removeAllPredicate);
@@ -100,6 +98,7 @@ public class HordentreiberFragmentItem extends SwordItem {
                 zombie.setStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, -1, 1, false, false, false), zombie);
                 zombie.setStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, -1, 1, false, false, false), zombie);
 
+                // Füge Custom AI hinzu
                 getTargetSelector(zombie).add(1, new ActiveTargetGoal<>(zombie, LivingEntity.class, 10, true, false,
                         (entity, serverWorld) -> entity == target && !ZOMBIES.contains(entity)
                 ));
@@ -107,11 +106,9 @@ public class HordentreiberFragmentItem extends SwordItem {
                 getGoalSelector(zombie).add(3, new WanderNearTargetGoal(zombie, 1.0, 32.0F));
 
                 zombie.setTarget(target);
-
                 zombie.setCustomNameVisible(false);
 
                 ZOMBIES.add(zombie);
-
                 target.getWorld().spawnEntity(zombie);
 
                 zombie.setAttacker(null);
@@ -155,7 +152,6 @@ public class HordentreiberFragmentItem extends SwordItem {
 
         boolean positionClear = stateAtPos.isAir() || stateAtPos.isReplaceable();
         boolean aboveClear = stateAbove.isAir() || stateAbove.isReplaceable();
-
         boolean solidBelow = !stateBelow.isAir() && stateBelow.isSolidBlock(world, pos.down());
 
         return positionClear && aboveClear && solidBelow;
