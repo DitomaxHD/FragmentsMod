@@ -51,5 +51,6 @@ public class Fragmentsmod implements ModInitializer {
         HalskettenFragmentHandler.register();
 
         ServerLifecycleEvents.SERVER_STARTED.register(SavetimeHandler::initialize);
+
     }
 }

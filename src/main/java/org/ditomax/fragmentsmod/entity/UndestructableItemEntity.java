@@ -24,4 +24,5 @@ public class UndestructableItemEntity extends ItemEntity {
 
         super.remove(reason);
     }
+
 }

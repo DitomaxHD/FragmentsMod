@@ -4,7 +4,8 @@
   "package": "org.ditomax.fragmentsmod.mixin.client",
   "compatibilityLevel": "JAVA_21",
   "client": [
-    "SpeerRendererMixin"
+    "SpeerRendererMixin",
+    "EntityRenderDispatcherMixin"
   ],
   "injectors": {
     "defaultRequire": 1

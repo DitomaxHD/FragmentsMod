@@ -98,7 +98,6 @@ public class HordentreiberFragmentItem extends SwordItem {
 
                 zombie.setTarget(target);
                 zombie.setStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, -1, 1, false, false, false), zombie);
-                zombie.setStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, -1, 1, false, false, false), zombie);
                 zombie.setStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, -1, 1, false, false, false), zombie);
 
                 getTargetSelector(zombie).add(1, new ActiveTargetGoal<>(zombie, LivingEntity.class, 10, true, false,

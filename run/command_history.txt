@@ -44,3 +44,6 @@
 /kill @e[ type=minecraft:zombie]
 /time set day
 /kill @e[ type=minecraft:zombie]
+/summon fragmentsmod:undestructable_item
+/kill @e
+/summon fragmentsmod:undestructable_item
